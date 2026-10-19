@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090e">
+  <meta name="description" content="VidVault — a clean, ad-free media link helper for authorized downloads.">
+  <title>VidVault — Your media, your library</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <header class="topbar wrap">
+    <a class="brand" href="./" aria-label="VidVault home">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 16v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"/></svg></span>
+      <span><strong>VidVault</strong><small>YOUR MEDIA. YOUR LIBRARY.</small></span>
+    </a>
+    <span class="privacy-pill"><span class="pulse"></span> AD-FREE · PRIVACY FIRST</span>
+  </header>
+
+  <main class="wrap main">
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> ONE PLACE FOR YOUR MEDIA</div>
+      <h1>Save what matters.<br><span class="gradient-text">Keep it yours.</span></h1>
+      <p class="hero-copy">A simple, ad-free place to organize media links and find each platform’s official save or export options.</p>
+    </section>
+
+    <section class="workspace panel" aria-labelledby="link-title">
+      <div class="section-heading">
+        <div>
+          <span class="step-label">01 / ADD A LINK</span>
+          <h2 id="link-title">What do you want to save?</h2>
+        </div>
+        <span class="link-icon" aria-hidden="true">↗</span>
+      </div>
+      <form id="link-form" novalidate>
+        <label class="sr-only" for="media-url">Video or media URL</label>
+        <div class="url-input-row">
+          <span class="url-symbol" aria-hidden="true">⌁</span>
+          <input id="media-url" name="url" type="url" inputmode="url" autocomplete="url" placeholder="Paste a YouTube, Instagram, X or media URL…" required>
+          <button id="paste-button" class="paste-button" type="button">Paste</button>
+        </div>
+        <div class="form-actions">
+          <button class="button button-primary" type="submit"><span>Detect link</span><span aria-hidden="true">→</span></button>
+          <button class="button button-secondary" id="clear-button" type="button">Clear</button>
+        </div>
+      </form>
+
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <section id="result-card" class="result-card" hidden aria-live="polite">
+        <div class="result-top">
+          <div class="platform-avatar" id="platform-avatar">V</div>
+          <div class="result-title">
+            <span class="step-label">LINK DETECTED</span>
+            <h3 id="platform-name">Platform</h3>
+            <p id="platform-subtitle">Choose a supported action below.</p>
+          </div>
+          <span class="detected-badge">Detected</span>
+        </div>
+        <p id="platform-guidance" class="guidance"></p>
+        <div class="result-actions">
+          <a id="open-platform" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer">Open official site <span aria-hidden="true">↗</span></a>
+          <button id="copy-link" class="button button-secondary" type="button">Copy link</button>
+          <button id="save-link" class="button button-secondary" type="button">Save to list ＋</button>
+        </div>
+        <p class="fine-print" id="result-disclaimer"></p>
+      </section>
+    </section>
+
+    <section class="platform-grid" aria-label="Supported link types">
+      <article class="platform-card">
+        <div class="platform-icon youtube">▶</div>
+        <div><h3>YouTube</h3><p>Official offline features and your own uploads</p></div>
+        <span class="card-arrow">↗</span>
+      </article>
+      <article class="platform-card">
+        <div class="platform-icon instagram">◎</div>
+        <div><h3>Instagram</h3><p>Reels and your own content exports</p></div>
+        <span class="card-arrow">↗</span>
+      </article>
+      <article class="platform-card">
+        <div class="platform-icon xbrand">𝕏</div>
+        <div><h3>X / Twitter</h3><p>Post links and native download options</p></div>
+        <span class="card-arrow">↗</span>
+      </article>
+    </section>
+
+    <section class="library panel">
+      <div class="section-heading library-heading">
+        <div><span class="step-label">02 / YOUR LIST</span><h2>Saved links</h2></div>
+        <button id="clear-library" class="text-button" type="button">Clear list</button>
+      </div>
+      <div id="empty-library" class="empty-state">
+        <div class="empty-icon">↘</div>
+        <strong>Your list is empty</strong>
+        <p>Detected links you save will appear here in this browser.</p>
+      </div>
+      <ul id="saved-list" class="saved-list" aria-label="Saved links"></ul>
+      <p class="storage-note"><span aria-hidden="true">◈</span> Saved links stay in this browser using local storage. They are not uploaded to a VidVault server.</p>
+    </section>
+
+    <section class="how-grid">
+      <div><span class="number">01</span><h3>Paste a link</h3><p>VidVault identifies supported platform URLs without asking you to sign in.</p></div>
+      <div><span class="number">02</span><h3>Use official options</h3><p>Open the platform and use its built-in download, offline, or export feature when available.</p></div>
+      <div><span class="number">03</span><h3>Stay in control</h3><p>No ad networks, tracking pixels, account passwords, or background downloads.</p></div>
+    </section>
+
+    <section class="limits panel">
+      <div class="limits-icon">i</div>
+      <div><h2>A clear note about downloads</h2><p>VidVault is a link helper, not a service that extracts videos from social-media pages. Platform links cannot always be downloaded directly. Availability depends on each service’s rules, your access, and the creator’s settings. This static site does not provide unlimited video hosting or promise unlimited downloads.</p></div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <a class="footer-brand" href="./">VidVault<span>®</span></a>
+    <span>Made to be simple. Built without ads.</span>
+    <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Deploy your own copy ↗</a>
+  </footer>
+  <script src="./app.js"></script>
+</body>
+</html>
